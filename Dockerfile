@@ -1,5 +1,5 @@
 FROM openjdk:14-jdk-alpine as build
-EXPOSE 8080/tcp
+EXPOSE 80
 WORKDIR /workspace/app
 
 COPY mvnw .
