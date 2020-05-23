@@ -14,14 +14,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    #- name: Build the Docker image
-      #run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
     - name: Docker Login
       uses: Azure/docker-login@v1
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         login-server: ${{ secrets.DOCKER_CONTAINER_REGISTRY }}
+    - name: Make mvnw executable
+      run: chmod +x ./mvnw
     - name: Build e Push no Azure Container Registry
       run: |
         docker build . --file Dockerfile --tag ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/easyidentitygenerator-user-generator:latest
